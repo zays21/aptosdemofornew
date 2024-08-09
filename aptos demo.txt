@@ -1,0 +1,24 @@
+module owner_aptosdemo{
+    use std::string::String;
+    use std::debug
+    use std::signer;
+
+    struct Info has store{
+        value:string
+    }
+    struct user has key{
+        info: info
+    }
+    const ID: u64 = 111;
+    const ENOT_CORRECT:u64 = 1;
+
+    public entry fun store_user(account: &signer,id: u64,user_id: String){
+        assert!(ID == ID, ENOT_CORRECT);
+        LET data = Info{ value: user user_id};
+        move_to(account, user { info:data});
+        
+}
+public fun get_user(account: & signer) acquires user{
+    let username = borrow_global<user>(signer:: adress_of(account).info.vaule;)
+}
+}
